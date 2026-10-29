@@ -66,18 +66,18 @@ export const Stage4SecretLetter: React.FC<Stage4SecretLetterProps> = ({ onRestar
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-xl glass-card rounded-3xl p-7 sm:p-11 shadow-[0_25px_60px_rgba(244,114,182,0.25)] border-2 border-pink-200/90 relative overflow-hidden"
+        className="w-full max-w-xl glass-card rounded-3xl p-5 sm:p-10 shadow-[0_25px_60px_rgba(244,114,182,0.25)] border-2 border-pink-200/90 relative overflow-hidden"
       >
         {/* Soft background watermark/rose pattern */}
         <div className="absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br from-pink-200/30 to-purple-200/20 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-pink-200/30 to-purple-200/20 rounded-full blur-2xl pointer-events-none" />
 
         {/* Top stationery tag */}
-        <div className="flex items-center justify-between border-b border-pink-200/70 pb-4 mb-6">
+        <div className="flex items-center justify-between border-b border-pink-200/70 pb-3 mb-5">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-pink-400 animate-ping" />
-            <span className="text-xs font-semibold tracking-widest uppercase text-pink-500 font-rounded">
-              Secret Note • Just For You
+            <span className="w-2 h-2 rounded-full bg-pink-400 animate-ping" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-pink-500 font-rounded">
+              Secret Note • For Rutu
             </span>
           </div>
 
@@ -92,7 +92,7 @@ export const Stage4SecretLetter: React.FC<Stage4SecretLetterProps> = ({ onRestar
         </div>
 
         {/* Letter Body with typing/reveal progression */}
-        <div className="space-y-5 min-h-[280px] font-body text-pink-950/90 text-lg leading-relaxed">
+        <div className="space-y-4 min-h-[260px] font-body text-pink-950/90 text-sm sm:text-lg leading-relaxed">
           {FULL_PARAGRAPHS.slice(0, revealedIndex).map((p, idx) => (
             <motion.p
               key={idx}
@@ -100,8 +100,8 @@ export const Stage4SecretLetter: React.FC<Stage4SecretLetterProps> = ({ onRestar
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className={`
-                ${idx === 0 ? 'text-2xl font-bold font-rounded text-pink-700' : ''}
-                ${idx === 2 ? 'font-semibold text-pink-800 text-xl' : ''}
+                ${idx === 0 ? 'text-xl sm:text-2xl font-bold font-rounded text-pink-700' : ''}
+                ${idx === 2 ? 'font-semibold text-pink-800 text-base sm:text-xl' : ''}
                 ${idx === 4 ? 'font-medium text-pink-900 bg-pink-50/60 p-3 rounded-xl border border-pink-100' : ''}
               `}
             >

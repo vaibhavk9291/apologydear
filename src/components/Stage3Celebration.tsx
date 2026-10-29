@@ -58,30 +58,30 @@ export const Stage3Celebration: React.FC<Stage3CelebrationProps> = ({ onContinue
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[90vh] px-4 py-10 z-10">
+    <div className="relative flex flex-col items-center justify-center min-h-[85vh] px-2 sm:px-4 py-4 sm:py-8 z-10 w-full">
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 25 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-xl glass-card rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(244,114,182,0.22)] border border-white/90 relative"
+        className="w-full max-w-xl glass-card rounded-3xl p-5 sm:p-10 shadow-[0_20px_50px_rgba(244,114,182,0.22)] border border-white/90 relative"
       >
         {/* Animated Teddy Bear with Happy Glow */}
-        <div className="flex flex-col items-center mb-6 relative">
+        <div className="flex flex-col items-center mb-5 sm:mb-6 relative">
           <div className="relative">
             {/* Sparkle badge */}
-            <div className="absolute -top-4 -right-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs px-3 py-1 rounded-full font-rounded font-bold shadow-md animate-bounce flex items-center gap-1 z-20">
+            <div className="absolute -top-3 -right-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-[11px] sm:text-xs px-3 py-1 rounded-full font-rounded font-bold shadow-md animate-bounce flex items-center gap-1 z-20">
               <Sparkles className="w-3 h-3" />
-              Forvigen!
+              Forgiven! 💕
             </div>
 
             <motion.div
               animate={{
-                y: [0, -10, 0],
+                y: [0, -8, 0],
                 rotate: [0, 2, -2, 0],
                 scale: [1, 1.04, 1],
               }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-40 h-40 sm:w-48 sm:h-48"
+              className="relative w-32 h-32 sm:w-44 sm:h-44"
             >
               <img
                 src="/assets/bear.png"
@@ -96,24 +96,24 @@ export const Stage3Celebration: React.FC<Stage3CelebrationProps> = ({ onContinue
         </div>
 
         {/* Big Joyful Title */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-5 sm:mb-6">
           <motion.h1
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-            className="text-4xl sm:text-5xl font-extrabold font-rounded text-gradient-rose tracking-tight mb-2 drop-shadow-sm"
+            className="text-3xl sm:text-5xl font-extrabold font-rounded text-gradient-rose tracking-tight mb-1.5 sm:mb-2 drop-shadow-sm"
           >
             YAYYYYY!! 🥹💗
           </motion.h1>
 
-          <p className="text-lg sm:text-xl font-medium text-pink-800">
+          <p className="text-base sm:text-xl font-medium text-pink-800">
             You have no idea how happy that makes me.
           </p>
         </div>
 
         {/* Heartfelt Revelations Container */}
-        <div className="space-y-4 text-pink-950/85 text-base sm:text-lg leading-relaxed bg-white/70 backdrop-blur-sm rounded-2xl p-6 sm:p-7 border border-pink-100 shadow-inner mb-8">
-          <div className="flex items-center gap-2 text-pink-600 font-rounded font-semibold text-lg border-b border-pink-100 pb-2">
+        <div className="space-y-3 sm:space-y-4 text-pink-950/85 text-sm sm:text-lg leading-relaxed bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-7 border border-pink-100 shadow-inner mb-6 sm:mb-8">
+          <div className="flex items-center gap-2 text-pink-600 font-rounded font-semibold text-base sm:text-lg border-b border-pink-100 pb-2">
             <span>📢 Okay, official announcement...</span>
           </div>
 

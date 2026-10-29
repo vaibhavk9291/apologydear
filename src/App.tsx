@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BackgroundElements } from './components/BackgroundElements';
 import { HeartCursorTrail } from './components/HeartCursorTrail';
-import { AudioToggle } from './components/AudioToggle';
-import { ProgressHearts } from './components/ProgressHearts';
+import { CuteNavbar } from './components/CuteNavbar';
 import { Stage1Envelope } from './components/Stage1Envelope';
 import { Stage2ApologyCard } from './components/Stage2ApologyCard';
 import { Stage3Celebration } from './components/Stage3Celebration';
@@ -44,25 +43,11 @@ export const App: React.FC = () => {
       {/* Desktop Heart Sparkle Cursor Trail */}
       <HeartCursorTrail />
 
-      {/* Fixed Header Controls */}
-      <header className="relative z-40 w-full px-4 pt-4 pb-2 flex items-center justify-between pointer-events-none">
-        {/* Cute Brand / Mood Tag */}
-        <div className="pointer-events-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card-subtle text-xs font-semibold text-pink-700 shadow-sm border border-pink-200/50">
-          <span>💌</span>
-          <span className="font-rounded">For my bestie</span>
-        </div>
-
-        {/* 3 Progress Hearts Indicator */}
-        <ProgressHearts currentStage={progressStage} />
-
-        {/* Audio Music Box / Sound Toggle (Never autoplays) */}
-        <div className="pointer-events-auto">
-          <AudioToggle />
-        </div>
-      </header>
+      {/* Unified, Beautiful Floating CuteNavbar */}
+      <CuteNavbar currentStage={progressStage} />
 
       {/* Main Content Area with Animated Transitions */}
-      <main className="relative z-10 flex-grow flex items-center justify-center w-full max-w-4xl mx-auto px-4 py-6">
+      <main className="relative z-10 flex-grow flex items-center justify-center w-full max-w-4xl mx-auto px-3 sm:px-6 pt-16 sm:pt-20 pb-8">
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
             <motion.div

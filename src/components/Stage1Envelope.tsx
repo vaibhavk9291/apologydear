@@ -70,7 +70,7 @@ export const Stage1Envelope: React.FC<Stage1EnvelopeProps> = ({ onOpenLetter }) 
         </motion.p>
 
         {/* Envelope Container with 3D / Floating effects */}
-        <div className="relative w-full max-w-sm aspect-[4/3] flex items-center justify-center mb-8 cursor-pointer group" onClick={handleOpen}>
+        <div className="relative w-full max-w-[280px] sm:max-w-sm aspect-[4/3] flex items-center justify-center mb-6 sm:mb-8 cursor-pointer group" onClick={handleOpen}>
           {/* Soft outer glow */}
           <div className="absolute inset-0 bg-pink-300/30 rounded-3xl blur-2xl group-hover:bg-pink-400/40 transition-all duration-500 scale-90" />
 
@@ -86,12 +86,12 @@ export const Stage1Envelope: React.FC<Stage1EnvelopeProps> = ({ onOpenLetter }) 
                 ? { duration: 0.8 }
                 : { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }
             }
-            className="relative w-full h-full flex items-center justify-center rounded-2xl overflow-hidden p-2"
+            className="relative w-full h-full flex items-center justify-center p-1"
           >
             <img
               src="/assets/envelope.png"
               alt="Cute Pink Apology Envelope with Heart Seal"
-              className={`w-full h-full object-contain filter drop-shadow-xl transition-all duration-700 ${
+              className={`w-full h-full object-contain filter drop-shadow-xl mix-blend-multiply transition-all duration-700 ${
                 isOpening ? 'brightness-105' : 'group-hover:scale-102 group-hover:drop-shadow-2xl'
               }`}
             />
@@ -113,11 +113,11 @@ export const Stage1Envelope: React.FC<Stage1EnvelopeProps> = ({ onOpenLetter }) 
                   initial={{ y: 80, opacity: 0, scale: 0.85 }}
                   animate={{ y: -40, opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, ease: 'easeOut' }}
-                  className="absolute inset-x-8 top-12 bg-white rounded-xl shadow-2xl p-5 border border-pink-200/90 z-20 flex flex-col items-center justify-center text-center"
+                  className="absolute inset-x-4 sm:inset-x-8 top-10 bg-white rounded-xl shadow-2xl p-4 sm:p-5 border border-pink-200/90 z-20 flex flex-col items-center justify-center text-center"
                 >
-                  <Heart className="w-8 h-8 text-pink-500 fill-pink-500 animate-heart-beat mb-2" />
-                  <span className="font-rounded text-pink-700 font-bold text-base">Unfolding with care...</span>
-                  <span className="text-xs text-pink-400 mt-1">Please read with an open heart 💌</span>
+                  <Heart className="w-7 h-7 text-pink-500 fill-pink-500 animate-heart-beat mb-1.5" />
+                  <span className="font-rounded text-pink-700 font-bold text-sm sm:text-base">Unfolding with care...</span>
+                  <span className="text-xs text-pink-400 mt-0.5">Please read with an open heart 💌</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -160,9 +160,9 @@ export const Stage1Envelope: React.FC<Stage1EnvelopeProps> = ({ onOpenLetter }) 
         <motion.button
           onClick={handleOpen}
           disabled={isOpening}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          className="relative group px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500 bg-[length:200%_auto] hover:bg-right text-white font-rounded font-semibold text-lg sm:text-xl shadow-[0_10px_25px_-5px_rgba(244,63,94,0.45)] hover:shadow-[0_15px_30px_-5px_rgba(244,63,94,0.6)] transition-all duration-300 cursor-pointer flex items-center gap-2.5 active:scale-95 disabled:opacity-80"
+          className="relative group px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500 bg-[length:200%_auto] hover:bg-right text-white font-rounded font-semibold text-base sm:text-lg shadow-[0_10px_25px_-5px_rgba(244,63,94,0.45)] hover:shadow-[0_15px_30px_-5px_rgba(244,63,94,0.6)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 active:scale-95 disabled:opacity-80 whitespace-nowrap"
         >
           <span className="tracking-wide">
             {isOpening ? 'Opening for you... 💌' : 'Open my little letter 💌'}

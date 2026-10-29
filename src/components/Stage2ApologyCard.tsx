@@ -75,12 +75,14 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
       setEscapeTrails((prev) => prev.filter((t) => t.id !== newTrail.id));
     }, 700);
 
-    // Viewport constraints with safe margins
+    // Viewport constraints with safe margins for mobile & desktop
     const vpWidth = window.innerWidth;
     const vpHeight = window.innerHeight;
-    const btnWidth = noRect.width || 120;
-    const btnHeight = noRect.height || 48;
-    const margin = 24;
+    const btnWidth = noRect.width || 110;
+    const btnHeight = noRect.height || 44;
+    const margin = 16;
+    const topSafeMargin = 72; // Keep clear of top floating CuteNavbar
+    const bottomSafeMargin = 48; // Keep clear of mobile browser bottom bar
 
     // Generate random positions until we find one sufficiently far from YES button
     let safeX = 0;
@@ -88,11 +90,14 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
     let found = false;
     let attempts = 0;
 
+    const availableHeight = Math.max(100, vpHeight - btnHeight - topSafeMargin - bottomSafeMargin);
+    const availableWidth = Math.max(100, vpWidth - btnWidth - margin * 2);
+
     while (!found && attempts < 25) {
       attempts++;
-      // Pick position within viewport
-      const candidateX = margin + Math.random() * (vpWidth - btnWidth - margin * 2);
-      const candidateY = margin + Math.random() * (vpHeight - btnHeight - margin * 2);
+      // Pick position within viewport safe zone
+      const candidateX = margin + Math.random() * availableWidth;
+      const candidateY = topSafeMargin + Math.random() * availableHeight;
 
       // Check distance from YES button so it never overlaps
       if (yesRect) {
@@ -102,7 +107,7 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
         const candCenterY = candidateY + btnHeight / 2;
         const distFromYes = Math.hypot(candCenterX - yesCenterX, candCenterY - yesCenterY);
 
-        if (distFromYes > 140) {
+        if (distFromYes > 120) {
           safeX = candidateX;
           safeY = candidateY;
           found = true;
@@ -116,8 +121,8 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
 
     if (!found) {
       // Fallback safe offsets
-      safeX = vpWidth * 0.7;
-      safeY = vpHeight * 0.75;
+      safeX = Math.max(margin, vpWidth * 0.5 - btnWidth / 2);
+      safeY = topSafeMargin + 40;
     }
 
     setNoButtonPos({ x: safeX, y: safeY });
@@ -236,7 +241,7 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
                   : { y: [0, -4, 0], rotate: [0, 1, -1, 0] }
               }
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-36 h-36 sm:w-44 sm:h-44"
+              className="relative w-28 h-28 sm:w-40 sm:h-40"
             >
               <img
                 src="/assets/bear.png"
@@ -247,8 +252,8 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
               {/* Extra Blush Cheeks on proximity */}
               {bearBlushing && (
                 <>
-                  <div className="absolute top-[52%] left-[28%] w-5 h-2.5 bg-rose-400/50 rounded-full blur-[2px] animate-pulse" />
-                  <div className="absolute top-[52%] right-[28%] w-5 h-2.5 bg-rose-400/50 rounded-full blur-[2px] animate-pulse" />
+                  <div className="absolute top-[52%] left-[28%] w-4 sm:w-5 h-2 sm:h-2.5 bg-rose-400/50 rounded-full blur-[2px] animate-pulse" />
+                  <div className="absolute top-[52%] right-[28%] w-4 sm:w-5 h-2 sm:h-2.5 bg-rose-400/50 rounded-full blur-[2px] animate-pulse" />
                 </>
               )}
             </motion.div>
@@ -256,13 +261,13 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl font-bold font-rounded text-center text-pink-700 mb-5 tracking-tight flex items-center justify-center gap-2">
+        <h1 className="text-2xl sm:text-4xl font-bold font-rounded text-center text-pink-700 mb-4 sm:mb-5 tracking-tight flex items-center justify-center gap-2">
           <span>I'm really sorry... 🥺</span>
         </h1>
 
         {/* Heartfelt Message Body */}
-        <div className="space-y-4 text-pink-950/85 text-base sm:text-lg leading-relaxed font-normal bg-pink-50/50 rounded-2xl p-5 sm:p-6 border border-pink-100/80 mb-6">
-          <p className="font-semibold text-pink-700 font-rounded text-lg">
+        <div className="space-y-3 sm:space-y-4 text-pink-950/85 text-sm sm:text-base leading-relaxed font-normal bg-pink-50/50 rounded-2xl p-4 sm:p-6 border border-pink-100/80 mb-5 sm:mb-6">
+          <p className="font-semibold text-pink-700 font-rounded text-base sm:text-lg">
             Hey youuu 💗
           </p>
 
@@ -284,31 +289,31 @@ export const Stage2ApologyCard: React.FC<Stage2ApologyCardProps> = ({ onAccept }
         </div>
 
         {/* Question with animated heart */}
-        <div className="flex flex-col items-center justify-center mb-8">
+        <div className="flex flex-col items-center justify-center mb-6 sm:mb-8">
           <motion.div
             animate={{ scale: [1, 1.25, 1], rotate: [0, -5, 5, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="mb-2 text-rose-500"
+            className="mb-1.5 sm:mb-2 text-rose-500"
           >
-            <Heart className="w-7 h-7 fill-rose-500 drop-shadow-[0_2px_8px_rgba(244,63,94,0.4)]" />
+            <Heart className="w-6 h-6 sm:w-7 sm:h-7 fill-rose-500 drop-shadow-[0_2px_8px_rgba(244,63,94,0.4)]" />
           </motion.div>
 
-          <h2 className="text-xl sm:text-2xl font-bold font-rounded text-center text-pink-800">
+          <h2 className="text-lg sm:text-2xl font-bold font-rounded text-center text-pink-800">
             Will you forgive me? 🥺💗
           </h2>
         </div>
 
         {/* Interactive Buttons Container */}
-        <div className="relative min-h-[64px] flex items-center justify-center gap-6 sm:gap-8 flex-wrap">
+        <div className="relative min-h-[58px] sm:min-h-[64px] flex items-center justify-center gap-4 sm:gap-8 flex-wrap">
           {/* YES Button — Anchored, pulsing, beautiful gradient */}
           <button
             ref={yesButtonRef}
             onClick={handleYesClick}
-            className="group relative z-10 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-rounded font-bold text-lg sm:text-xl shadow-[0_8px_25px_rgba(244,63,94,0.5)] hover:shadow-[0_12px_32px_rgba(244,63,94,0.7)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2 animate-soft-pulse"
+            className="group relative z-10 px-7 py-3 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-rounded font-bold text-base sm:text-xl shadow-[0_8px_25px_rgba(244,63,94,0.5)] hover:shadow-[0_12px_32px_rgba(244,63,94,0.7)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2 animate-soft-pulse"
           >
-            <Heart className="w-5 h-5 fill-white group-hover:scale-110 transition-transform" />
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white group-hover:scale-110 transition-transform" />
             <span>YESSS 💗</span>
-            <Sparkles className="w-4 h-4 text-pink-200 group-hover:rotate-12 transition-transform" />
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-200 group-hover:rotate-12 transition-transform" />
           </button>
 
           {/* NO Button — Dodges cursor with proximity detection */}
