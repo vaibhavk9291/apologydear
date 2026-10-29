@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-rounded: 'Fredoka', 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-hand: 'Caveat', cursive;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: var(--font-body);
+    color: #4a3b4e;
+    background-color: #fdf7f9;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-rounded {
+    font-family: var(--font-rounded);
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+}
+
+/* Custom animations */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes slowFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.45);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 35px rgba(244, 114, 182, 0.7);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.15);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+@keyframes bearTilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(-10%);
+  }
+  50% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}
+
+@keyframes shimmerText {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.animate-slow-float {
+  animation: slowFloat 6s ease-in-out infinite;
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2.8s ease-in-out infinite;
+}
+
+.animate-heart-beat {
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: sparkleTwinkle 3s ease-in-out infinite;
+}
+
+.animate-bear-tilt {
+  animation: bearTilt 5s ease-in-out infinite;
+}
+
+.animate-cloud-drift {
+  animation: cloudDrift 28s ease-in-out infinite;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 20px 40px -15px rgba(244, 114, 182, 0.18),
+    0 0 25px 0 rgba(233, 213, 255, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.glass-card-subtle {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.1);
+}
+
+/* Shimmer gradient text */
+.text-gradient-rose {
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-soft {
+  background: linear-gradient(135deg, #e11d48 0%, #db2777 40%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdf2f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #fbcfe8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f472b6;
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
